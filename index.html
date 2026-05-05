@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cine Mundial</title>
+
+<link rel="icon" href="img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
+
+body{
+  background:
+  linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,1)),
+  url('https://images.unsplash.com/photo-1448375240586-882707db888b') center/cover no-repeat fixed;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* NIEVE (ARREGLADA) */
+#snow{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
+  pointer-events:none;
+}
+
+/* CONTENIDO */
+main{
+  position:relative;
+  z-index:2;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:15px;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+}
+
+.logo{
+  color:red;
+  font-weight:bold;
+  font-size:28px;
+  text-shadow:0 0 15px red;
+}
+
+/* HERO */
+.hero{
+  height:35vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero h1{
+  font-size:45px;
+}
+
+/* GRID */
+.container{padding:20px;}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:18px;
+}
+
+/* CARD */
+.card{
+  position:relative;
+  height:270px;
+  border-radius:14px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.4s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.6);
+}
+
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.card:hover{
+  transform:scale(1.12);
+}
+
+/* OVERLAY */
+.overlay{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding:10px;
+  background:linear-gradient(transparent, black);
+}
+
+/* PLAY ICON */
+.card::after{
+  content:"▶";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:35px;
+  opacity:0;
+  transition:.3s;
+}
+
+.card:hover::after{
+  opacity:1;
+}
+
+/* BANNER */
+.banner{
+  display:flex;
+  justify-content:center;
+  margin:15px 0;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="snow"></canvas>
+
+<main>
+
+<header>
+  <div class="logo">🎬 Cine Mundial</div>
+</header>
+
+<section class="hero">
+  <h1>Películas Gratis</h1>
+</section>
+
+<!-- ANUNCIO -->
+<div class="banner">
+  <script>
+    atOptions = {
+      'key' : '4f089beb98f49be61fa0c0fb471066b5',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highperformanceformat.com/4f089beb98f49be61fa0c0fb471066b5/invoke.js"></script>
+</div>
+
+<div class="container">
+  <div class="grid" id="grid"></div>
+</div>
+
+</main>
+
+<script>
+
+/* 🎬 PELÍCULAS (SIN CAMBIOS) */
+let peliculas = [
+  {titulo:"Acción Extrema",img:"img/1.jpg",link:"https://vix.com"},
+  {titulo:"Son como niños",img:"img/2.jpg",link:"https://vix.com"},
+  {titulo:"El Orfanato",img:"img/3.jpg",link:"https://vix.com"},
+  {titulo:"El Rescate",img:"img/4.jpg",link:"https://vix.com"},
+  {titulo:"Isla Maldita",img:"img/5.jpg",link:"https://vix.com"},
+  {titulo:"Terremoto 10.10",img:"img/6.jpg",link:"https://vix.com"},
+  {titulo:"Tornado de terror",img:"img/7.jpg",link:"https://vix.com"},
+  {titulo:"¿Quieres ser mi hijo?",img:"img/8.jpg",link:"https://vix.com"},
+  {titulo:"Scary Movie",img:"img/9.jpg",link:"https://vix.com"},
+  {titulo:"Tonta pero no tanto",img:"img/10.jpg",link:"https://tubitv.com/movies/100054553/tonta-tonta-pero-no-tanto"},
+  {titulo:"Miedo profundo",img:"img/11.jpg",link:"https://tubitv.com/movies/588234/miedo-profundo-doblado"},
+  {titulo:"Muñeca de payaso",img:"img/12.jpg",link:"https://tubitv.com/movies/686275/mu-eca-de-payaso-doblado"},
+  {titulo:"Hansel y Gretel",img:"img/13.jpg",link:"https://tubitv.com/movies/536449/hansel-and-gretel-doblado"},
+  {titulo:"Lechuza",img:"img/14.jpg",link:"https://tubitv.com/movies/100043856/lechuza"},
+  {titulo:"Batalla de Bestias",img:"img/15.jpg",link:"https://tubitv.com/movies/100043258/la-batalla-de-las-bestias"},
+  {titulo:"Megalodon",img:"img/16.jpg",link:"https://tubitv.com/movies/100041547/megalodon"},
+  {titulo:"Robocop",img:"img/17.jpg",link:"https://tubitv.com/series/300009288/robocop-the-series-espa-ol"},
+  {titulo:"La leyenda del rey mono",img:"img/18.jpg",link:"https://tubitv.com/movies/666870/la-leyenda-del-rey-mono-el-regreso-del-h-roe-doblado"},
+  {titulo:"La serie de la pandilla de Sugar Creek",img:"img/19.jpg",link:"https://tubitv.com/tv-shows/200014205/s01-e01-race-against-nightfall"},
+  {titulo:"El transportador 3",img:"img/20.jpg",link:"https://tubitv.com/movies/100044388/el-transportador-3"}
+];
+
+/* RENDER */
+let grid = document.getElementById("grid");
+
+function render(){
+  grid.innerHTML="";
+  peliculas.sort(()=>Math.random()-0.5).forEach(p=>{
+    grid.innerHTML += `
+    <div class="card" onclick="window.open('${p.link}','_blank')">
+      <img src="${p.img}">
+      <div class="overlay">
+        <h3>${p.titulo}</h3>
+      </div>
+    </div>`;
+  });
+}
+
+render();
+
+/* ❄️ NIEVE OPTIMIZADA */
+const canvas = document.getElementById("snow");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+let snowflakes = [];
+
+for(let i=0;i<60;i++){
+  snowflakes.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*3+1,
+    d:Math.random()*1
+  });
+}
+
+function drawSnow(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="white";
+  ctx.beginPath();
+
+  snowflakes.forEach(f=>{
+    ctx.moveTo(f.x,f.y);
+    ctx.arc(f.x,f.y,f.r,0,Math.PI*2,true);
+  });
+
+  ctx.fill();
+
+  snowflakes.forEach(f=>{
+    f.y += f.d + 0.5;
+    if(f.y > canvas.height){
+      f.y = 0;
+      f.x = Math.random()*canvas.width;
+    }
+  });
+}
+
+setInterval(drawSnow,30);
+
+</script>
+
+<!-- ADSTERRA -->
+<script src="https://pl29319090.profitablecpmratenetwork.com/0c/58/0c/0c580c710218a46b5bc067b2ca7f9c57.js"></script>
+
+</body>
+</html>
