@@ -1,4 +1,151 @@
-<!-- 🔴 BANNER ARRIBA -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cine Mundial</title>
+
+<link rel="icon" href="img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins;
+}
+
+body{
+  background:
+  linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,1)),
+  url('https://images.unsplash.com/photo-1448375240586-882707db888b') center/cover no-repeat fixed;
+  color:white;
+  overflow-x:hidden;
+}
+
+#snow{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
+  pointer-events:none;
+}
+
+main{
+  position:relative;
+  z-index:2;
+}
+
+header{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:15px;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+}
+
+.logo{
+  color:red;
+  font-weight:bold;
+  font-size:28px;
+  text-shadow:0 0 15px red;
+}
+
+.hero{
+  height:35vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero h1{
+  font-size:45px;
+}
+
+.container{
+  padding:20px;
+}
+
+/* 🎬 CATÁLOGO */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:14px;
+}
+
+.card{
+  position:relative;
+  height:240px;
+  border-radius:14px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.4s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.6);
+}
+
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.card:hover{
+  transform:scale(1.08);
+}
+
+.overlay{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding:10px;
+  background:linear-gradient(transparent, black);
+}
+
+.card::after{
+  content:"▶";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:35px;
+  opacity:0;
+  transition:.3s;
+}
+
+.card:hover::after{
+  opacity:1;
+}
+
+/* 🔴 ANUNCIOS */
+.banner{
+  display:flex;
+  justify-content:center;
+  margin:15px 0;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="snow"></canvas>
+
+<main>
+
+<header>
+  <div class="logo">🎬 Cine Mundial</div>
+</header>
+
+<section class="hero">
+  <h1>Películas Gratis</h1>
+</section>
+
+<!-- 🔴 ANUNCIO 1 - BANNER SUPERIOR -->
 <div class="banner">
 <script>
 atOptions = {
@@ -12,7 +159,7 @@ atOptions = {
 <script src="https://www.highperformanceformat.com/4f089beb98f49be61fa0c0fb471066b5/invoke.js"></script>
 </div>
 
-<!-- 🔴 NATIVE -->
+<!-- 🔴 ANUNCIO 2 - NATIVE -->
 <div class="banner">
 <script async="async" data-cfasync="false" src="https://pl29339573.profitablecpmratenetwork.com/312540ce27247aca94a7555850e84cba/invoke.js"></script>
 <div id="container-312540ce27247aca94a7555850e84cba"></div>
@@ -22,7 +169,21 @@ atOptions = {
   <div class="grid" id="grid"></div>
 </div>
 
-<!-- 🔴 SEGUNDO BANNER ABAJO -->
+<!-- 🔴 ANUNCIO 3 - BANNER ABAJO -->
+<div class="banner">
+<script>
+atOptions = {
+'key' : '4f089beb98f49be61fa0c0fb471066b5',
+'format' : 'iframe',
+'height' : 50,
+'width' : 320,
+'params' : {}
+};
+</script>
+<script src="https://www.highperformanceformat.com/4f089beb98f49be61fa0c0fb471066b5/invoke.js"></script>
+</div>
+
+<!-- 🔴 ANUNCIO 4 - BANNER EXTRA -->
 <div class="banner">
 <script>
 atOptions = {
@@ -81,7 +242,7 @@ function render(){
 
 render();
 
-/* NIEVE */
+/* ❄️ NIEVE */
 const canvas = document.getElementById("snow");
 const ctx = canvas.getContext("2d");
 
@@ -89,6 +250,7 @@ function resize(){
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 }
+
 resize();
 window.addEventListener("resize", resize);
 
@@ -117,6 +279,7 @@ function drawSnow(){
 
   snowflakes.forEach(f=>{
     f.y += f.d + 0.5;
+
     if(f.y > canvas.height){
       f.y = 0;
       f.x = Math.random()*canvas.width;
@@ -127,15 +290,20 @@ function drawSnow(){
 setInterval(drawSnow,30);
 </script>
 
-<!-- 🔴 POPUNDER -->
+<!-- 🔴 ANUNCIO 5 - POPUNDER -->
 <script src="https://pl29339574.profitablecpmratenetwork.com/dd/65/59/dd65599689737dda6b30269ce2a225cc.js"></script>
 
 <!-- 🔴 SMARTLINK -->
 <script>
 let adShown = false;
+
 document.addEventListener("click", function(){
   if(!adShown){
-    window.open("https://www.profitablecpmratenetwork.com/n5g8nf38j?key=1f071aafe9d2fda68657ed999da37ae1", "_blank");
+    window.open(
+      "https://www.profitablecpmratenetwork.com/n5g8nf38j?key=1f071aafe9d2fda68657ed999da37ae1",
+      "_blank"
+    );
+
     adShown = true;
   }
 });
