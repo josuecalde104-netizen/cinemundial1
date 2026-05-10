@@ -3,26 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Cine Mundial</title>
 
 <link rel="icon" href="img/logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Poppins;
+  font-family:'Poppins',sans-serif;
+}
+
+:root{
+  --red:#ff1f1f;
+  --bg:#050505;
+  --card:#111111;
+  --soft:#1b1b1b;
+  --text:#ffffff;
+  --gray:#bdbdbd;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
   background:
-  linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,1)),
-  url('https://images.unsplash.com/photo-1448375240586-882707db888b') center/cover no-repeat fixed;
-  color:white;
+  linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.96)),
+  url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1974&auto=format&fit=crop') center/cover fixed;
+  color:var(--text);
   overflow-x:hidden;
 }
+
+/* ===== SCROLL ===== */
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:var(--red);
+  border-radius:20px;
+}
+
+/* ===== NIEVE ===== */
 
 #snow{
   position:fixed;
@@ -34,100 +63,288 @@ body{
   pointer-events:none;
 }
 
-main{
-  position:relative;
-  z-index:2;
-}
+/* ===== HEADER ===== */
 
 header{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:15px;
-  background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(10px);
   position:sticky;
   top:0;
+  z-index:1000;
+  backdrop-filter:blur(14px);
+  background:rgba(0,0,0,.55);
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.nav{
+  max-width:1450px;
+  margin:auto;
+  padding:16px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
 }
 
 .logo{
-  color:red;
-  font-weight:bold;
-  font-size:28px;
-  text-shadow:0 0 15px red;
+  font-size:30px;
+  font-weight:700;
+  color:var(--red);
+  text-shadow:0 0 18px rgba(255,0,0,.7);
 }
 
+.search-box{
+  width:320px;
+  max-width:100%;
+}
+
+.search{
+  width:100%;
+  padding:12px 18px;
+  border:none;
+  outline:none;
+  border-radius:50px;
+  background:rgba(255,255,255,.08);
+  color:white;
+  font-size:14px;
+  backdrop-filter:blur(10px);
+}
+
+.search::placeholder{
+  color:#d2d2d2;
+}
+
+.search:focus{
+  box-shadow:0 0 0 2px rgba(255,0,0,.3);
+}
+
+/* ===== HERO ===== */
+
 .hero{
-  height:35vh;
+  min-height:40vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px 20px;
+}
+
+.hero-content{
+  max-width:850px;
 }
 
 .hero h1{
-  font-size:45px;
+  font-size:68px;
+  margin-bottom:16px;
+  line-height:1.1;
+  text-shadow:0 0 25px rgba(0,0,0,.8);
 }
 
-.container{
+.hero p{
+  color:var(--gray);
+  font-size:18px;
+}
+
+/* ===== ADS ===== */
+
+.ads-wrapper{
+  max-width:1450px;
+  margin:auto;
+  padding:0 20px 30px;
+}
+
+.ads-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:18px;
+}
+
+.ad-box{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.05);
+  border-radius:22px;
+  padding:15px;
+  min-height:100px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  backdrop-filter:blur(10px);
+}
+
+/* ===== SECTION ===== */
+
+.section{
+  max-width:1450px;
+  margin:auto;
   padding:20px;
 }
 
-/* 🎬 CATÁLOGO */
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:28px;
+}
+
+.section-title h2{
+  font-size:30px;
+}
+
+.movies-count{
+  color:#a7a7a7;
+  font-size:14px;
+}
+
+/* ===== GRID ===== */
+
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-  gap:14px;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:24px;
 }
 
 .card{
-  position:relative;
-  height:240px;
-  border-radius:14px;
+  background:var(--card);
+  border-radius:24px;
   overflow:hidden;
-  cursor:pointer;
-  transition:.4s;
-  box-shadow:0 10px 25px rgba(0,0,0,0.6);
-}
-
-.card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  transition:.35s;
+  box-shadow:0 12px 28px rgba(0,0,0,.45);
 }
 
 .card:hover{
+  transform:translateY(-8px);
+}
+
+.poster{
+  position:relative;
+  height:310px;
+  overflow:hidden;
+}
+
+.poster img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.45s;
+}
+
+.card:hover img{
   transform:scale(1.08);
 }
 
-.overlay{
+.poster::before{
+  content:"";
   position:absolute;
-  bottom:0;
-  width:100%;
-  padding:10px;
-  background:linear-gradient(transparent, black);
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.97),transparent 55%);
+  z-index:1;
 }
 
-.card::after{
-  content:"▶";
+.play{
   position:absolute;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  font-size:35px;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:rgba(255,0,0,.92);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  z-index:2;
   opacity:0;
   transition:.3s;
+  box-shadow:0 0 25px rgba(255,0,0,.5);
 }
 
-.card:hover::after{
+.card:hover .play{
   opacity:1;
 }
 
-/* 🔴 ANUNCIOS */
-.banner{
-  display:flex;
-  justify-content:center;
-  margin:15px 0;
+.info{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  z-index:2;
+  padding:18px;
 }
+
+.info h3{
+  font-size:16px;
+  margin-bottom:12px;
+  line-height:1.35;
+}
+
+.watch-btn{
+  width:100%;
+  border:none;
+  padding:11px;
+  border-radius:14px;
+  background:linear-gradient(45deg,#ff0000,#ff3b3b);
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+  font-size:14px;
+}
+
+.watch-btn:hover{
+  transform:scale(1.03);
+  opacity:.92;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+  margin-top:45px;
+  padding:28px;
+  text-align:center;
+  color:#888;
+  background:rgba(0,0,0,.5);
+  border-top:1px solid rgba(255,255,255,.05);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:850px){
+
+  .hero h1{
+    font-size:48px;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .nav{
+    flex-direction:column;
+  }
+
+  .hero{
+    min-height:35vh;
+  }
+
+  .hero h1{
+    font-size:36px;
+  }
+
+  .hero p{
+    font-size:15px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+  }
+
+  .poster{
+    height:250px;
+  }
+
+}
+
 </style>
 </head>
 
@@ -135,72 +352,140 @@ header{
 
 <canvas id="snow"></canvas>
 
-<main>
-
 <header>
-  <div class="logo">🎬 Cine Mundial</div>
+
+  <div class="nav">
+
+    <div class="logo">
+      🎬 Cine Mundial
+    </div>
+
+    <div class="search-box">
+
+      <input
+      type="text"
+      id="search"
+      class="search"
+      placeholder="Buscar película...">
+
+    </div>
+
+  </div>
+
 </header>
 
 <section class="hero">
-  <h1>Películas Gratis</h1>
+
+  <div class="hero-content">
+
+    <h1>Películas Gratis En Apps Oficiales</h1>
+
+    <p>
+      Disfruta películas y series disponibles en ViX y tubi.
+    </p>
+
+  </div>
+
 </section>
 
-<!-- 🔴 ANUNCIO 1 - BANNER SUPERIOR -->
-<div class="banner">
-<script>
-atOptions = {
-'key' : '4f089beb98f49be61fa0c0fb471066b5',
-'format' : 'iframe',
-'height' : 50,
-'width' : 320,
-'params' : {}
-};
-</script>
-<script src="https://www.highperformanceformat.com/4f089beb98f49be61fa0c0fb471066b5/invoke.js"></script>
+<!-- ===== ADS TOP ===== -->
+
+<div class="ads-wrapper">
+
+  <div class="ads-grid">
+
+    <div class="ad-box">
+
+      <script>
+      atOptions = {
+      'key' : '4f089beb98f49be61fa0c0fb471066b5',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+      };
+      </script>
+
+      <script src="https://www.highperformanceformat.com/4f089beb98f49be61fa0c0fb471066b5/invoke.js"></script>
+
+    </div>
+
+    <div class="ad-box">
+
+      <script async="async" data-cfasync="false" src="https://pl29339573.profitablecpmratenetwork.com/312540ce27247aca94a7555850e84cba/invoke.js"></script>
+
+      <div id="container-312540ce27247aca94a7555850e84cba"></div>
+
+    </div>
+
+  </div>
+
 </div>
 
-<!-- 🔴 ANUNCIO 2 - NATIVE -->
-<div class="banner">
-<script async="async" data-cfasync="false" src="https://pl29339573.profitablecpmratenetwork.com/312540ce27247aca94a7555850e84cba/invoke.js"></script>
-<div id="container-312540ce27247aca94a7555850e84cba"></div>
-</div>
+<section class="section">
 
-<div class="container">
+  <div class="section-title">
+
+    <h2>🔥 Tendencias</h2>
+
+    <span class="movies-count" id="moviesCount"></span>
+
+  </div>
+
   <div class="grid" id="grid"></div>
+
+</section>
+
+<!-- ===== ADS BOTTOM ===== -->
+
+<div class="ads-wrapper">
+
+  <div class="ads-grid">
+
+    <div class="ad-box">
+
+      <script>
+      atOptions = {
+      'key' : '4f089beb98f49be61fa0c0fb471066b5',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+      };
+      </script>
+
+      <script src="https://www.highperformanceformat.com/4f089beb98f49be61fa0c0fb471066b5/invoke.js"></script>
+
+    </div>
+
+    <div class="ad-box">
+
+      <script>
+      atOptions = {
+      'key' : '4f089beb98f49be61fa0c0fb471066b5',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+      };
+      </script>
+
+      <script src="https://www.highperformanceformat.com/4f089beb98f49be61fa0c0fb471066b5/invoke.js"></script>
+
+    </div>
+
+  </div>
+
 </div>
 
-<!-- 🔴 ANUNCIO 3 - BANNER ABAJO -->
-<div class="banner">
-<script>
-atOptions = {
-'key' : '4f089beb98f49be61fa0c0fb471066b5',
-'format' : 'iframe',
-'height' : 50,
-'width' : 320,
-'params' : {}
-};
-</script>
-<script src="https://www.highperformanceformat.com/4f089beb98f49be61fa0c0fb471066b5/invoke.js"></script>
-</div>
-
-<!-- 🔴 ANUNCIO 4 - BANNER EXTRA -->
-<div class="banner">
-<script>
-atOptions = {
-'key' : '4f089beb98f49be61fa0c0fb471066b5',
-'format' : 'iframe',
-'height' : 50,
-'width' : 320,
-'params' : {}
-};
-</script>
-<script src="https://www.highperformanceformat.com/4f089beb98f49be61fa0c0fb471066b5/invoke.js"></script>
-</div>
-
-</main>
+<footer>
+  © Cine Mundial
+</footer>
 
 <script>
+
 let peliculas = [
+
   {titulo:"Acción Extrema",img:"img/1.jpg",link:"https://vix.com"},
   {titulo:"Son como niños",img:"img/2.jpg",link:"https://vix.com"},
   {titulo:"El Orfanato",img:"img/3.jpg",link:"https://vix.com"},
@@ -235,91 +520,169 @@ let peliculas = [
   {titulo:"Después de la muerte",img:"img/32.jpg",link:"https://tubitv.com/movies/100044419/despu-s-de-la-muerte"},
   {titulo:"Monstruos de guerra",img:"img/33.jpg",link:"https://tubitv.com/movies/100008848/monstruos-de-guerra-doblado"},
   {titulo:"Cápsula de escape",img:"img/34.jpg",link:"https://tubitv.com/movies/100018961/c-psula-de-escape-doblado"}
-  
+
 ];
 
-let grid = document.getElementById("grid");
+const grid = document.getElementById("grid");
+const search = document.getElementById("search");
+const moviesCount = document.getElementById("moviesCount");
 
-function render(){
-  grid.innerHTML="";
-  peliculas.sort(()=>Math.random()-0.5).forEach(p=>{
+function render(lista){
+
+  grid.innerHTML = "";
+
+  moviesCount.innerText = lista.length + " películas";
+
+  lista.forEach(p=>{
+
+    let plataforma = "📲 Abrir App";
+
+    if(p.link.includes("tubitv")){
+      plataforma = "▶ Ver en Tubi";
+    }
+
+    else if(p.link.includes("vix")){
+      plataforma = "▶ Ver en ViX";
+    }
+
+    else if(p.link.includes("canela")){
+      plataforma = "▶ Ver en Canela TV";
+    }
+
     grid.innerHTML += `
-    <div class="card" onclick="window.open('${p.link}','_blank')">
-      <img src="${p.img}">
-      <div class="overlay">
-        <h3>${p.titulo}</h3>
+
+    <div class="card">
+
+      <div class="poster">
+
+        <img src="${p.img}" loading="lazy">
+
+        <div class="play">▶</div>
+
+        <div class="info">
+
+          <h3>${p.titulo}</h3>
+
+          <button class="watch-btn"
+          onclick="window.open('${p.link}','_blank')">
+
+            ${plataforma}
+
+          </button>
+
+        </div>
+
       </div>
-    </div>`;
+
+    </div>
+
+    `;
+
   });
+
 }
 
-render();
+render(peliculas);
 
-/* ❄️ NIEVE */
+search.addEventListener("input", ()=>{
+
+  let texto = search.value.toLowerCase();
+
+  let filtradas = peliculas.filter(p =>
+    p.titulo.toLowerCase().includes(texto)
+  );
+
+  render(filtradas);
+
+});
+
 const canvas = document.getElementById("snow");
 const ctx = canvas.getContext("2d");
 
 function resize(){
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+
 }
 
 resize();
+
 window.addEventListener("resize", resize);
 
 let snowflakes = [];
 
-for(let i=0;i<60;i++){
+for(let i=0;i<70;i++){
+
   snowflakes.push({
+
     x:Math.random()*canvas.width,
     y:Math.random()*canvas.height,
     r:Math.random()*3+1,
     d:Math.random()*1
+
   });
+
 }
 
 function drawSnow(){
+
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="white";
+
+  ctx.fillStyle = "white";
+
   ctx.beginPath();
 
   snowflakes.forEach(f=>{
+
     ctx.moveTo(f.x,f.y);
+
     ctx.arc(f.x,f.y,f.r,0,Math.PI*2,true);
+
   });
 
   ctx.fill();
 
   snowflakes.forEach(f=>{
-    f.y += f.d + 0.5;
+
+    f.y += f.d + 0.6;
 
     if(f.y > canvas.height){
+
       f.y = 0;
       f.x = Math.random()*canvas.width;
+
     }
+
   });
+
 }
 
 setInterval(drawSnow,30);
+
 </script>
 
-<!-- 🔴 ANUNCIO 5 - POPUNDER -->
 <script src="https://pl29339574.profitablecpmratenetwork.com/dd/65/59/dd65599689737dda6b30269ce2a225cc.js"></script>
 
-<!-- 🔴 SMARTLINK -->
 <script>
+
 let adShown = false;
 
 document.addEventListener("click", function(){
+
   if(!adShown){
+
     window.open(
       "https://www.profitablecpmratenetwork.com/n5g8nf38j?key=1f071aafe9d2fda68657ed999da37ae1",
       "_blank"
     );
 
     adShown = true;
+
   }
+
 });
+
 </script>
 
 </body>
