@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -40,8 +43,6 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== SCROLL ===== */
-
 ::-webkit-scrollbar{
   width:8px;
 }
@@ -50,8 +51,6 @@ body{
   background:var(--red);
   border-radius:20px;
 }
-
-/* ===== NIEVE ===== */
 
 #snow{
   position:fixed;
@@ -62,8 +61,6 @@ body{
   z-index:-1;
   pointer-events:none;
 }
-
-/* ===== HEADER ===== */
 
 header{
   position:sticky;
@@ -116,8 +113,6 @@ header{
   box-shadow:0 0 0 2px rgba(255,0,0,.3);
 }
 
-/* ===== HERO ===== */
-
 .hero{
   min-height:40vh;
   display:flex;
@@ -142,8 +137,6 @@ header{
   color:var(--gray);
   font-size:18px;
 }
-
-/* ===== ADS ===== */
 
 .ads-wrapper{
   max-width:1450px;
@@ -170,8 +163,6 @@ header{
   backdrop-filter:blur(10px);
 }
 
-/* ===== SECTION ===== */
-
 .section{
   max-width:1450px;
   margin:auto;
@@ -193,8 +184,6 @@ header{
   color:#a7a7a7;
   font-size:14px;
 }
-
-/* ===== GRID ===== */
 
 .grid{
   display:grid;
@@ -295,8 +284,6 @@ header{
   opacity:.92;
 }
 
-/* ===== FOOTER ===== */
-
 footer{
   margin-top:45px;
   padding:28px;
@@ -305,8 +292,6 @@ footer{
   background:rgba(0,0,0,.5);
   border-top:1px solid rgba(255,255,255,.05);
 }
-
-/* ===== RESPONSIVE ===== */
 
 @media(max-width:850px){
 
@@ -381,46 +366,12 @@ footer{
     <h1>Películas Gratis En Apps Oficiales</h1>
 
     <p>
-      Disfruta películas y series disponibles en ViX y tubi.
+      Disfruta películas y series disponibles en ViX,TUBI y en Canela TV.
     </p>
 
   </div>
 
 </section>
-
-<!-- ===== ADS TOP ===== -->
-
-<div class="ads-wrapper">
-
-  <div class="ads-grid">
-
-    <div class="ad-box">
-
-      <script>
-      atOptions = {
-      'key' : '4f089beb98f49be61fa0c0fb471066b5',
-      'format' : 'iframe',
-      'height' : 50,
-      'width' : 320,
-      'params' : {}
-      };
-      </script>
-
-      <script src="https://www.highperformanceformat.com/4f089beb98f49be61fa0c0fb471066b5/invoke.js"></script>
-
-    </div>
-
-    <div class="ad-box">
-
-      <script async="async" data-cfasync="false" src="https://pl29339573.profitablecpmratenetwork.com/312540ce27247aca94a7555850e84cba/invoke.js"></script>
-
-      <div id="container-312540ce27247aca94a7555850e84cba"></div>
-
-    </div>
-
-  </div>
-
-</div>
 
 <section class="section">
 
@@ -435,48 +386,6 @@ footer{
   <div class="grid" id="grid"></div>
 
 </section>
-
-<!-- ===== ADS BOTTOM ===== -->
-
-<div class="ads-wrapper">
-
-  <div class="ads-grid">
-
-    <div class="ad-box">
-
-      <script>
-      atOptions = {
-      'key' : '4f089beb98f49be61fa0c0fb471066b5',
-      'format' : 'iframe',
-      'height' : 50,
-      'width' : 320,
-      'params' : {}
-      };
-      </script>
-
-      <script src="https://www.highperformanceformat.com/4f089beb98f49be61fa0c0fb471066b5/invoke.js"></script>
-
-    </div>
-
-    <div class="ad-box">
-
-      <script>
-      atOptions = {
-      'key' : '4f089beb98f49be61fa0c0fb471066b5',
-      'format' : 'iframe',
-      'height' : 50,
-      'width' : 320,
-      'params' : {}
-      };
-      </script>
-
-      <script src="https://www.highperformanceformat.com/4f089beb98f49be61fa0c0fb471066b5/invoke.js"></script>
-
-    </div>
-
-  </div>
-
-</div>
 
 <footer>
   © Cine Mundial
@@ -527,6 +436,19 @@ const grid = document.getElementById("grid");
 const search = document.getElementById("search");
 const moviesCount = document.getElementById("moviesCount");
 
+function abrirPelicula(link){
+
+  window.open(
+    'https://www.profitablecpmratenetwork.com/ct3i8bb6?key=cb8e9a0b9a3cde91c0167fb17d0e2eeb',
+    '_blank'
+  );
+
+  setTimeout(()=>{
+    window.open(link,'_blank');
+  },800);
+
+}
+
 function render(lista){
 
   grid.innerHTML = "";
@@ -564,7 +486,7 @@ function render(lista){
           <h3>${p.titulo}</h3>
 
           <button class="watch-btn"
-          onclick="window.open('${p.link}','_blank')">
+          onclick="abrirPelicula('${p.link}')">
 
             ${plataforma}
 
@@ -662,28 +584,6 @@ setInterval(drawSnow,30);
 
 </script>
 
-<script src="https://pl29339574.profitablecpmratenetwork.com/dd/65/59/dd65599689737dda6b30269ce2a225cc.js"></script>
-
-<script>
-
-let adShown = false;
-
-document.addEventListener("click", function(){
-
-  if(!adShown){
-
-    window.open(
-      "https://www.profitablecpmratenetwork.com/n5g8nf38j?key=1f071aafe9d2fda68657ed999da37ae1",
-      "_blank"
-    );
-
-    adShown = true;
-
-  }
-
-});
-
-</script>
-
 </body>
 </html>
+```
